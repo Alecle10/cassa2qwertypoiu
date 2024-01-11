@@ -185,11 +185,6 @@ div#titolo-scontrino {
     padding: 0px;
 }
 
-#fine-scontrino {
-    position: absolute;
-    bottom: 40px;
-}
-
 #totale-scontrino {
     font-size: 25px;
     padding-left: 20px;
@@ -287,7 +282,6 @@ div#prodotti-categorie {
 /*Zona Destra*/
 #zona-destra {
     position: absolute;
-    bottom: 0px;
     right: 0%;
     padding: 0px;
     margin: 0px;
@@ -313,7 +307,7 @@ div#prodotti-categorie {
 
 #btn-pagamento {
     width: 370px;
-    height: 107px;
+    height: 100px;
 }
 
 .btns-cassa:active {
