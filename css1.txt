@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Lato;
+}
+
+#heade {
+    background-color: #191b28;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+#over-accesso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#login-form, #profilo{
+    text-align: center;
+    background-color: white;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#login-form input {
+    border-top: 1px solid;
+    margin: 10px;
+    padding: 10px;
+    width: 70%;
+    font-size: 16px;
+}
+
+#login-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-form button:hover {
+    background-color: #45a049;
+}
+
+#messaggio-errore {
+    color: red;
+    margin-top: 10px;
+}
+
+#profilo {
+    text-align: center;
+    display: none;
+}
+
+#profilo, #ciao-user {
+    text-align: center;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profilo img {
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#esci, #torna-indietro {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#esci:hover, #torna-indietro:hover {
+    background-color: #d32f2f;
+}
+
+
+
+#btn-utente {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#img-utente {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+#data {
+    color: #e5e5e5;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-family: 'serif';
+}
+
+#trattino-datetime::before, #trattino-datetime::after {
+    content: " ";
+}
+
+#trattino-datetime {
+    margin: 0 5px;
+}
+
+div#corpo {
+    display: flex;
+}
+
+div#scontrino {
+    border: 2px solid black;
+    border-top: none;
+    height: 758px;
+    width: 33%;
+    font-family: 'Lato', sans-serif;
+}
+
+div.oggetti-correnti {
+    height: 100px;
+    border-bottom: #000 solid 2px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px;
+    align-items: center;
+    font-weight: bold;
+    font-size: larger;
+}
+
+div#titolo-scontrino {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 20px 0px 5px;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+#corpo-scontrino {
+    padding: 0px 25px;
+    height: 60%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.5;
+}
+
+#prezzi-scontrino {
+    text-align: right;
+}
+
+.linea-orrizzontale {
+    border: none;
+    border-top: 2px solid #000;
+    margin: 15px 0px;
+    padding: 0px;
+}
+
+#fine-scontrino {
+    position: absolute;
+    bottom: 40px;
+}
+
+#totale-scontrino {
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+#iva-scontrino {
+    font-size: 15px;
+}
+
+#nr-prodotti-scontrino {
+    display: flex;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+  
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1b0;
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #d3d3d3;
+    border-radius: 5px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.categorie {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px 0px 13px;
+}
+.btns-cat {
+    cursor: default;
+    user-select: none;
+    font-family: 'Lato', sans-serif;
+    background-color: #64278f;
+    color: white;
+    border: none;
+    width: 125px;
+    height: 40px;
+    font-size: 22px;
+    outline: none;
+    text-align: center;
+}
+.btns-cat:active {
+    cursor: default;
+    user-select: none;
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+/*Tabelle Prodotti*/
+div#prodotti-categorie {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+.btns-prodotti {
+    cursor: default;
+    user-select: none;
+    font-family: 'Lato', sans-serif;
+    background-color: #fff;
+    color: black;
+    border: #000 solid 1px;
+    border-radius: 5px;
+    line-height: 1.5;
+    width: 124px;
+    height: 90px;
+    font-size: 18px;
+    outline: none;
+    text-align: center;
+    padding: 10px;
+}
+.btns-bibite:active {
+    cursor: default;
+    user-select: none;
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+.euro-kilo {
+    font-size: 13px;
+}
+
+/*Zona Destra*/
+#zona-destra {
+    position: absolute;
+    bottom: 0px;
+    right: 0%;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*Bottoni cassa*/
+.bottoni-cassa {
+    padding: 0px;
+    margin: 0px;
+}
+
+.btns-cassa {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    background-color: white;
+    font-size: 20px;
+    color: black;
+    border: #000 solid 1px;
+    width: 183px;
+    height: 80px;
+    outline: none;
+}
+
+#btn-pagamento {
+    width: 370px;
+    height: 107px;
+}
+
+.btns-cassa:active {
+    cursor: default;
+    user-select: none;
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+/*Calcolatrice*/
+.calculator {
+    height: 475px;
+    width: 375px;
+}
+
+.display-box {
+    font-family: 'Lato', sans-serif;
+    background-color: #dcdbe1;
+    border: solid black 0.5px;
+    color: black;
+    width: 98%;
+    height: 65%;
+}
+
+#btn-canc {
+    background-color: red;
+}
+
+#btn-del {
+    background-color: red;
+}
+
+input[type=button] {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #64278f;
+    color: white;
+    border: none;
+    width: 90px;
+    height: 100%;
+    outline: none;
+}
+
+input:active[type=button] {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+
+#overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+  
+  /* Stile per i bottoni di pagamento */
+.tot-iva-pagamento{
+    font-size: 18px;
+    margin: 20px 0px 20px 20px;
+}
+#metodo-pagamento{
+    margin-top: 50px;
+}
+
+.btns-pagamenti {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-flex;
+    width: 396px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.btns-pagamenti img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+#chiudi-pagamento{
+    margin-top: 10%;
+}
+
+#over-pagamento{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pagine-pagamenti, #conferma-annullamento, #over-cassetto, #over-storno{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 600px;
+    height: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 25px; 
+    margin-top: 50px;
+}
+#over-cassetto{
+    height: 25%;
+}
+#pagina-contanti{
+    width: 700px;
+}
+.banconote, .banconote img{
+    width: 125px;
+    height: 70px;
+    margin-right: 5px;
+    border: none;
+    background-color: #ffff;
+    box-shadow: none;
+}
+.banconote{
+    width: 130px;
+}
+
+#calculator-resto{
+    margin-left: 25%;
+}
+.display-box-resto{
+    font-size: 20px;
+}
+.resto input[type=button] {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #fff;
+    color: black;
+    border:#000 ;
+    width: 90px;
+    height: 100%;
+    outline: none;
+    font-size: 25px;
+}
+.resto input[type=button]#btn-canc {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #fff;
+    color: black;
+    border:#000 ;
+    width: 90px;
+    height: 100%;
+    outline: none;
+}
+
+input:active[type=button] {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+#calcola-resto{
+    font-size: 18px;
+    border-radius: 5px;
+    border-color: green;
+    border-width: 2px;
+    background-color: #fff;
+    color: green;
+}
+
+
+.chiudi-bottoni-pagamenti{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border-color: red;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#btn-annulla-conto-no, #si-storno{
+    background-color: white;
+    border-radius: 10px;
+    border-color: green;
+    font-size: 15px;
+    padding: 20px;
+    width: 90px;
+}
+#si-storno{
+    margin-right: 30px;
+}
+#btn-annulla-conto-conf, #chiudi-storno{
+    font-size: 15px;
+    padding: 20px;
+    width: 90px;
+    margin-right: 30px;
+}
+
+.chiudi-bottoni-pagamenti:active{
+    background-color: white;
+    color: red;
+    border-color: red;
+}

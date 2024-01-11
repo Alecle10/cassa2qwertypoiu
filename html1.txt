@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ 
+<head>
+  <meta charset="utf-8">
+  <title>CASSA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body>
+
+  <div id="supremo">
+
+    <div id="heade">
+      <span><button id="btn-utente" onclick="utente()">
+        <img src="https://i.postimg.cc/QNQcmNFk/219988.png" alt=" " id="img-utente">
+        Utente</button></span>
+      <span id="data">
+        <span id="current-date"></span>
+        <span id="trattino-datetime"> - </span>
+        <span id="current-time"></span>
+      </span>
+    </div>
+
+    <div id="corpo">
+
+      <div id="over-accesso">
+        <div id="login-form">
+          <h2>Accesso Utente</h2>
+          <form onsubmit="verificaPassword(event)">
+            <label for="user">User:</label>
+            <input type="usesr" id="user" name="user" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br><br>
+            <button type="submit">Accedi</button>
+          </form>
+          <p id="messaggio-errore" style="color: red;"></p>
+        </div>
+        <div id="profilo">
+          <span id="ciao-user"><img src="https://i.postimg.cc/QNQcmNFk/219988.png" alt=" "></span>Ciao, Alessandro <br>
+          <button id="torna-indietro" onclick="tornaIndietro()">Torna Indietro</button>
+          <button id="esci" onclick="logOut()">Log out</button>
+        </div>
+      </div>
+
+      <div id="scontrino">
+        <div class="oggetti-correnti">
+          
+          <div id="oggetto-corrente"></div>
+          <div id="prezzo-corrente"></div>
+          
+        </div>
+
+        <div id="titolo-scontrino">
+          <span>OGGETTO</span>
+          <span>€</span>
+        </div>
+        <div id="corpo-scontrino">
+          <div id="nomi-oggetti">
+          
+          </div>
+          <div id="prezzi-scontrino">
+            
+          </div>
+        </div>
+        <hr class="linea-orrizzontale">
+        <div id="fine-scontrino">
+          <span class="totale" id="totale-scontrino">TOTALE:⠀<span id="totale-scontrino-nr">0</span>€</span><br>
+          <span class="iva"    id="iva-scontrino"   >⠀⠀⠀ ⠀ ⠀di cui iva:⠀⠀<span id="iva-scontrino-nr">0</span></span><br><br>
+          <span class="nr-prodotti" id="nr-prodotti-scontrino">numero prodotti:⠀<span id="nr-prodotti-scontrino-nr">0</span></span>
+        </div>
+      </div>
+
+      <div id="zona-centrale">
+        <table class="categorie">
+          <tr>
+            <td> <button class="btns-cat" id="cat-bibite">Bibite</button></td>
+            <td> <button class="btns-cat" id="cat-salumi">Salumi</button></td>
+            <td> <button class="btns-cat" id="cat-latticini">Latticini</button></td>
+          </tr>
+          <tr>
+            <td> <button class="btns-cat" id="cat-frutta">Frutta</button></td>
+            <td> <button class="btns-cat" id="cat-verdura">Verdura</button></td>
+            <td> <button class="btns-cat" id="cat-casa">Casa</button></td>
+          </tr>
+          <tr>
+            <td> <button class="btns-cat" id="cat-generale">Generale</button></td>
+            <td> <button class="btns-cat" id="cat-cartoleria">Cartoleria</button></td>
+          </tr>
+        </table>
+
+        <div id="prodotti-categorie">
+          <table id="bibite-options" style="display: none">
+            <tr>
+              <td><button class="btns-bibite btns-prodotti" id="btn-acqua-0.5" onclick="ottieniID(this)"><span class="nome-prod">Acqua 0.5 lt</span><br><span class="val-prod">0.25 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-acqua-1" onclick="ottieniID(this)"><span class="nome-prod">Acqua 1 lt</span><br><span class="val-prod">0.35 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-acqua-1.5" onclick="ottieniID(this)"><span class="nome-prod">Acqua 1.5 lt</span><br><span class="val-prod">0.48 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-bibite btns-prodotti" id="btn-fanta-0.5" onclick="ottieniID(this)"><span class="nome-prod">Fanta 0.5 lt</span><br><span class="val-prod">1.05 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-acqua-1.2" onclick="ottieniID(this)"><span class="nome-prod">Fanta 1.2 lt</span><br><span class="val-prod">2.00 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-cola-0.5" onclick="ottieniID(this)"><span class="nome-prod">CocaCola 0.5 lt</span><br><span class="val-prod">1.15 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-bibite btns-prodotti" id="btn-cola-1" onclick="ottieniID(this)"><span class="nome-prod">CocaCola 1 lt</span><br><span class="val-prod">2.10 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-bibita-gen-0.5" onclick="ottieniID(this)"><span class="nome-prod">Bibita 0.5 lt</span><br><span class="val-prod">0.80 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-bibita-gen-1.5" onclick="ottieniID(this)"><span class="nome-prod">Bibita 1.5 lt</span><br><span class="val-prod">1.50 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-bibite btns-prodotti" id="btn-birra-0.33" onclick="ottieniID(this)"><span class="nome-prod">Birra 0.33 lt</span><br><span class="val-prod">1.50 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-birra-0.66" onclick="ottieniID(this)"><span class="nome-prod">Birra 0.66 lt</span><br><span class="val-prod">2.50 €</span></button></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-vino-1" onclick="ottieniID(this)"><span class="nome-prod">Vino 1 lt</span><br><span class="val-prod">3.50 €</span></button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="btns-bibite btns-prodotti" id="btn-aggiungi-bibita" onclick="aggiungi(this)">Aggiungi</button></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <table id="salumi-options" style="display: none">
+            <tr>
+              <td><button class="btns-salumi btns-prodotti" id="btn-salame" onclick="ottieniID(this)"><span class="nome-prod">Salame 100 g</span><br><span class="val-prod">1.90 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-mortadella" onclick="ottieniID(this)"><span class="nome-prod">Mortadella 100 g</span><br><span class="val-prod">1.80 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-prosciutto-cotto" onclick="ottieniID(this)"><span class="nome-prod">Pros Cotto 100 g</span><br><span class="val-prod">2.30 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-salumi btns-prodotti" id="btn-prosciutto-crudo" onclick="ottieniID(this)"><span class="nome-prod">Pros Crudo 100 g</span><br><span class="val-prod">3.20 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-sopressa" onclick="ottieniID(this)"><span class="nome-prod">Sopressa 100 g</span><br><span class="val-prod">1.90 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-speck" onclick="ottieniID(this)"><span class="nome-prod">Speck 100 g</span><br><span class="val-prod">2.20 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-salumi btns-prodotti" id="btn-bresaola" onclick="ottieniID(this)"><span class="nome-prod">Bresaola 100 g</span><br><span class="val-prod">4.60 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-pancetta" onclick="ottieniID(this)"><span class="nome-prod">Pancetta</span><br><span class="val-prod">2.00 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-salamino" onclick="ottieniID(this)"><span class="nome-prod">Salamino 0.5 kg</span><br><span class="val-prod">8.90 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-salumi btns-prodotti" id="btn-pasta-lucanica" onclick="ottieniID(this)"><span class="nome-prod">Pasta di luc. 2pz</span><br><span class="val-prod">3.50 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-bistecche" onclick="ottieniID(this)"><span class="nome-prod">Bistecca 1pz</span><br><span class="val-prod">1.50 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-pollo-intero" onclick="ottieniID(this)"><span class="nome-prod">Pollo Intero</span><br><span class="val-prod">10.50 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-salumi btns-prodotti" id="btn-wurstel" onclick="ottieniID(this)"><span class="nome-prod">Wurstel 4pz</span><br><span class="val-prod">2.50 €</span></button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-aggiungi-salumi" onclick="aggiungi(this)">Salumi gen.</button></td>
+              <td><button class="btns-salumi btns-prodotti" id="btn-aggiungi-carne" onclick="aggiungi(this)">Carne gen.</button></td>
+            </tr>
+          </table>
+
+          <table id="latticini-options" style="display: none">
+            <tr>
+              <td><button class="btns-latticini btns-prodotti" id="btn-formaggio15" onclick="ottieniID(this)"><span class="nome-prod">Formaggio 100 g</span><br><span class="val-prod">1.50 €</span><br><span class="euro-kilo">(15€/kg)</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-formaggio20" onclick="ottieniID(this)"><span class="nome-prod">Formaggio 100 g</span><br><span class="val-prod">2.00 €</span><br><span class="euro-kilo">(20€/kg)</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-mozzarelle" onclick="ottieniID(this)"><span class="nome-prod">Mozzarelle</span><br><span class="val-prod">1.87 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-latticini btns-prodotti" id="btn-ricotta" onclick="ottieniID(this)"><span class="nome-prod">Ricotta</span><br><span class="val-prod">2.30 €</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-sottilette" onclick="ottieniID(this)"><span class="nome-prod">Sottilette</span><br><span class="val-prod">2.10 €</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-grana-grattugiato" onclick="ottieniID(this)"><span class="nome-prod">Grana Grattugiato</span><br><span class="val-prod">1.95 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-latticini btns-prodotti" id="btn-grana" onclick="ottieniID(this)"><span class="nome-prod">Grana 100 g</span><br><span class="val-prod">2.65 €</span><br><span class="euro-kilo">(26.50€/kg)</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-yogurt" onclick="ottieniID(this)"><span class="nome-prod">Yogurt</span><br><span class="val-prod">1.20 €</span></button></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-latte-intero" onclick="ottieniID(this)"><span class="nome-prod">Latte Intero</span><br><span class="val-prod">0.98 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-latticini btns-prodotti" id="btn-latte-parz" onclick="ottieniID(this)"><span class="nome-prod">Latte Parz Screm</span><br><span class="val-prod">1.25 €</span></button></td>
+              <td></td>
+              <td><button class="btns-latticini btns-prodotti" id="btn-aggiungi-latticino" onclick="aggiungi(this)">Aggiungi</button></td>
+            </tr>
+          </table>
+
+          <table id="frutta-options" style="display: none">
+            <tr>
+              <td><button class="btns-frutta btns-prodotti" id="btn-mele" onclick="ottieniID(this)"><span class="nome-prod">Mele 100g</span><br><span class="val-prod">0.65 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-albicocche" onclick="ottieniID(this)"><span class="nome-prod">Albicocche 100 g</span><br><span class="val-prod">0.82 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-banane" onclick="ottieniID(this)"><span class="nome-prod">Banane 100 g</span><br><span class="val-prod">0.76 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-frutta btns-prodotti" id="btn-pere" onclick="ottieniID(this)"><span class="nome-prod">Pere 100 g</span><br><span class="val-prod">0.72 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-pesche" onclick="ottieniID(this)"><span class="nome-prod">Pesche 100 g</span><br><span class="val-prod">0.78 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-uva" onclick="ottieniID(this)"><span class="nome-prod">Uva 100 g</span><br><span class="val-prod">0.68 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-frutta btns-prodotti" id="btn-ciliege" onclick="ottieniID(this)"><span class="nome-prod">Ciliege 100 g</span><br><span class="val-prod">0.65 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-kiwi" onclick="ottieniID(this)"><span class="nome-prod">Kiwi 100 g</span><br><span class="val-prod">0.86 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-ananas" onclick="ottieniID(this)"><span class="nome-prod">Ananas</span><br><span class="val-prod">2.35 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-frutta btns-prodotti" id="btn-castagne" onclick="ottieniID(this)"><span class="nome-prod">Castagne 100 g</span><br><span class="val-prod">0.73 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-limone" onclick="ottieniID(this)"><span class="nome-prod">Limoni 100 g</span><br><span class="val-prod">0.85 €</span></button></td>
+              <td><button class="btns-frutta btns-prodotti" id="btn-aggiungi-frutta" onclick="aggiungi(this)">Aggiungi</button></td>
+            </tr>
+          </table>
+          
+          <table id="verdura-options" style="display: none">
+            <tr>
+              <td><button class="btns-verdura btns-prodotti" id="btn-aglio" onclick="ottieniID(this)"><span class="nome-prod">Aglio 100g</span><br><span class="val-prod">0.67 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-carote" onclick="ottieniID(this)"><span class="nome-prod">Carote 100 g</span><br><span class="val-prod">0.92 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-cetrioli" onclick="ottieniID(this)"><span class="nome-prod">Cetrioli 100 g</span><br><span class="val-prod">0.68 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-verdura btns-prodotti" id="btn-cipolle" onclick="ottieniID(this)"><span class="nome-prod">Cipolle 100 g</span><br><span class="val-prod">0.53 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-insalata" onclick="ottieniID(this)"><span class="nome-prod">Insalata 100 g</span><br><span class="val-prod">0.48 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-melanzane" onclick="ottieniID(this)"><span class="nome-prod">Melanzane 100 g</span><br><span class="val-prod">0.69 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-verdura btns-prodotti" id="btn-patate" onclick="ottieniID(this)"><span class="nome-prod">Patate 100 g</span><br><span class="val-prod">0.65 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-peperoni" onclick="ottieniID(this)"><span class="nome-prod">Peperoni 100 g</span><br><span class="val-prod">0.69 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-pomodori" onclick="ottieniID(this)"><span class="nome-prod">Pomodori 100 g</span><br><span class="val-prod">0.78 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-verdura btns-prodotti" id="btn-spinaci" onclick="ottieniID(this)"><span class="nome-prod">Spinaci 100 g</span><br><span class="val-prod">0.83 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-zucchine" onclick="ottieniID(this)"><span class="nome-prod">Zucchine 100 g</span><br><span class="val-prod">0.64 €</span></button></td>
+              <td><button class="btns-verdura btns-prodotti" id="btn-aggiungi-verdura" onclick="aggiungi(this)">Aggiungi</button></td>
+            </tr>
+          </table>
+
+          <table id="casa-options" style="display: none">
+            <tr>
+              <td><button class="btns-casa btns-prodotti" id="btn-carta-forno" onclick="ottieniID(this)"><span class="nome-prod">Carta Forno</span><br><span class="val-prod">3.46 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-carta-alluminio" onclick="ottieniID(this)"><span class="nome-prod">Carta Alluminio</span><br><span class="val-prod">2.92 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-pellicola" onclick="ottieniID(this)"><span class="nome-prod">Pellicola</span><br><span class="val-prod">2.85 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-casa btns-prodotti" id="btn-sacchetti" onclick="ottieniID(this)"><span class="nome-prod">Sacchetti</span><br><span class="val-prod">2.34 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-detersivo" onclick="ottieniID(this)"><span class="nome-prod">Detersivo</span><br><span class="val-prod">1.76 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-shampoo" onclick="ottieniID(this)"><span class="nome-prod">Shampoo</span><br><span class="val-prod">2.15 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-casa btns-prodotti" id="btn-sapone" onclick="ottieniID(this)"><span class="nome-prod">Sapone</span><br><span class="val-prod">1.25 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-panni" onclick="ottieniID(this)"><span class="nome-prod">Panni</span><br><span class="val-prod">1.86 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-spugne" onclick="ottieniID(this)"><span class="nome-prod">Spugne</span><br><span class="val-prod">1.65 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-casa btns-prodotti" id="btn-batterie" onclick="ottieniID(this)"><span class="nome-prod">Batterie</span><br><span class="val-prod">6.56 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-scottex" onclick="ottieniID(this)"><span class="nome-prod">Scottex</span><br><span class="val-prod">2.42 €</span></button></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-carta-igienica" onclick="ottieniID(this)"><span class="nome-prod">Carta Igienica</span><br><span class="val-prod">2.36 €</span></button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="btns-casa btns-prodotti" id="btn-aggiungi-casa" onclick="aggiungi(this)">Aggiungi</button></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <table id="generale-options" style="display: none">
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-pane" onclick="ottieniID(this)"><span class="nome-prod">Pane</span><br><span class="val-prod">1.20 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-uova" onclick="ottieniID(this)"><span class="nome-prod">Uova</span><br><span class="val-prod">2.00 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-pasta" onclick="ottieniID(this)"><span class="nome-prod">Pasta</span><br><span class="val-prod">0.80 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-lattina-tonno" onclick="ottieniID(this)"><span class="nome-prod">Lattina di Tonno</span><br><span class="val-prod">1.50 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-fagioli-in-scatola" onclick="ottieniID(this)"><span class="nome-prod">Fagioli in Scatola</span><br><span class="val-prod">1.10 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-biscotti" onclick="ottieniID(this)"><span class="nome-prod">Biscotti</span><br><span class="val-prod">1.80 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-cereali" onclick="ottieniID(this)"><span class="nome-prod">Cereali</span><br><span class="val-prod">2.30 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-barrette-cereali" onclick="ottieniID(this)"><span class="nome-prod">Barrette di Cereali</span><br><span class="val-prod">1.60 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-cioccolato" onclick="ottieniID(this)"><span class="nome-prod">Cioccolato</span><br><span class="val-prod">1.25 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-conserve" onclick="ottieniID(this)"><span class="nome-prod">Conserve Miste</span><br><span class="val-prod">2.50 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-cafè" onclick="ottieniID(this)"><span class="nome-prod">Caffè</span><br><span class="val-prod">3.00 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-zucchero" onclick="ottieniID(this)"><span class="nome-prod">Zucchero</span><br><span class="val-prod">1.00 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-sale" onclick="ottieniID(this)"><span class="nome-prod">Sale</span><br><span class="val-prod">0.50 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-pepe" onclick="ottieniID(this)"><span class="nome-prod">Pepe</span><br><span class="val-prod">0.60 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-olio" onclick="ottieniID(this)"><span class="nome-prod">Olio</span><br><span class="val-prod">5.20 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-aceto" onclick="ottieniID(this)"><span class="nome-prod">Aceto</span><br><span class="val-prod">3.57 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-aceto-balsamico" onclick="ottieniID(this)"><span class="nome-prod">Aceto Balsamico</span><br><span class="val-prod">3.50 €</span></button></td>
+              <td><button class="btns-alimenti btns-prodotti" id="btn-aggiungi-generale" onclick="aggiungi(this)">Aggiungi</button></td>
+            </tr>
+          </table>
+          
+
+          <table id="cartoleria-options" style="display: none">
+            <tr>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-penne" onclick="ottieniID(this)"><span class="nome-prod">Penne</span><br><span class="val-prod">0.75 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-matite" onclick="ottieniID(this)"><span class="nome-prod">Matite</span><br><span class="val-prod">0.60 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-quaderni" onclick="ottieniID(this)"><span class="nome-prod">Quaderni</span><br><span class="val-prod">1.25 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-righelli" onclick="ottieniID(this)"><span class="nome-prod">Righelli</span><br><span class="val-prod">1.30 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-gomme" onclick="ottieniID(this)"><span class="nome-prod">Gomme</span><br><span class="val-prod">0.60 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-forbici" onclick="ottieniID(this)"><span class="nome-prod">Forbici</span><br><span class="val-prod">2.80 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-carta-colorata" onclick="ottieniID(this)"><span class="nome-prod">Carta Colorata</span><br><span class="val-prod">1.00 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-pennarelli" onclick="ottieniID(this)"><span class="nome-prod">Pennarelli</span><br><span class="val-prod">1.50 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-collante" onclick="ottieniID(this)"><span class="nome-prod">Collante</span><br><span class="val-prod">0.90 €</span></button></td>
+            </tr>
+            <tr>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-vinavil" onclick="ottieniID(this)"><span class="nome-prod">Vinavil</span><br><span class="val-prod">1.65 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-taccuini" onclick="ottieniID(this)"><span class="nome-prod">Taccuini</span><br><span class="val-prod">1.20 €</span></button></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-agenda" onclick="ottieniID(this)"><span class="nome-prod">Agenda</span><br><span class="val-prod">2.50 €</span></button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="btns-cartoleria btns-prodotti" id="btn-aggiungi-cartoleria" onclick="aggiungi(this)">Aggiungi</button></td>
+              <td></td>
+            </tr>
+          </table>
+          
+        </div>
+      </div>
+      
+
+      <div id="zona-destra">
+        <table class="bottoni-cassa">
+          <tr>
+            <td><button class="btns-cassa" id="btn-sub-totale">SUB TOTALE</button></td>
+            <td><button class="btns-cassa" id="btn-annulla-conto">ANNULLA CONTO</button></td>
+          </tr>
+          <tr>
+            <td><button class="btns-cassa" id="btn-cassetto">APRI CASSETTO</button></td>
+            <td><button class="btns-cassa" id="btn-storno">STORNO</button></td>
+          </tr>
+          <tr>
+            <td colspan="2"> <button class="btns-cassa" id="btn-pagamento">PAGAMENTO</button></td>
+          </tr>
+        </table>
+  
+        <table class="calculator" >
+          <tr>
+            <td colspan="4"> <input class="display-box" type="text" id="result" disabled /> </td>
+          </tr>
+          <tr>
+            <!-- display() function displays the value of clicked button -->
+            <td> <input type="button" value="1" onclick="display('1')" /> </td>
+            <td> <input type="button" value="2" onclick="display('2')" /> </td>
+            <td> <input type="button" value="3" onclick="display('3')" /> </td>
+            <td> <input type="button" value="X" onclick="display('*')" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="4" onclick="display('4')" /> </td>
+            <td> <input type="button" value="5" onclick="display('5')" /> </td>
+            <td> <input type="button" value="6" onclick="display('6')" /> </td>
+            <td> <input type="button" value="C" onclick="clearScreen()" id="btn-canc" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7" onclick="display('7')" /> </td>
+            <td> <input type="button" value="8" onclick="display('8')" /> </td>
+            <td> <input type="button" value="9" onclick="display('9')" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="." onclick="display('.')" /> </td>
+            <td> <input type="button" value="0" onclick="display('0')" /> </td>
+            <td> <input type="button" value="00" onclick="display('00')" /> </td>
+            <td> <input type="button" value="Del" onclick="del()" id="btn-del" /> </td>
+          </tr>
+        </table>
+         
+        <script type="text/javascript" src="script.js"></script>
+      </div>
+
+      <div id="overlay">
+        <div id="conferma-annullamento">
+          <div style="font-size: 30px;text-align: center;font-weight: bold;padding-bottom: 25px; margin-top: 50px;">ANNULLARE SCONTRINO</div>
+          <div style="font-size: 22px;text-align: center;font-weight: 400;padding-bottom: 25px; margin-top: 50px; margin-bottom: 50px;">Sei sicuro di voler annullare tutto lo scontrino?</div>
+          <button id="btn-annulla-conto-conf" class="chiudi-bottoni-pagamenti">SI</button>
+          <button id="btn-annulla-conto-no">NO</button>
+        </div>
+
+        <div id="over-cassetto">
+          <div style="font-size: 30px;text-align: center;font-weight: bold;padding-bottom: 25px; margin-top: 50px;">Apertura Cassetto in Corso...</div>
+          <button id="chiudi-cassetto" class="chiudi-bottoni-pagamenti">Chiudi</button>
+        </div>
+
+        <div id="over-storno">
+          <div style="font-size: 30px;text-align: center;font-weight: bold;padding-bottom: 25px; margin-top: 50px;">Storno</div>
+          <div style="font-size: 22px;text-align: center;font-weight: 400;padding-bottom: 25px; margin-top: 50px; margin-bottom: 50px;">Si vuole effettuare uno storno per <span id="valore-storno" style="font-weight: bold;"></span> euro?</div>
+          
+          <button id="si-storno" class="">Si</button>
+          <button id="chiudi-storno" class="chiudi-bottoni-pagamenti">Chiudi</button>
+        </div>
+
+        <div id="over-pagamento">
+          <div style="font-size: 25px;text-align: center;font-weight: bold;padding-bottom: 25px; margin-top: 50px;">PAGAMENTO<br></div>
+          
+          <div class="tot-iva-pagamento">TOTALE:⠀<span id="totale-scontrino-nr1">0</span>⠀€<br>
+          di cui IVA:⠀<span id="iva-scontrino-nr1">0</span>⠀€</div>
+          <div id="metodo-pagamento">
+            <table>
+              <tr>
+                <td><button class="btns-pagamenti" id="btn-pag-contanti" ><img src="https://i.postimg.cc/dVxsrdvH/cash-payment.png" alt="">Contanti</button></td>
+                <td><button class="btns-pagamenti" id="btn-pag-carta"><img src="https://i.postimg.cc/tT09mjsF/atm-card.png" alt="">Carte/Bancomat</button></td>
+              </tr>
+              <tr>
+                <td><button id="btn-pagamento-buoni" class="btns-pagamenti"><img src="https://i.postimg.cc/gcHG41m6/transaction-history.png" alt="">Buoni</button></td>
+                <td><button id="btn-pagamento-crypto" class="btns-pagamenti"><img src="https://i.postimg.cc/pTDRw6j4/bitcoin.png" alt="">Crypto</button></td>
+              </tr>
+            </table>
+            </div>
+            
+          <button id="chiudi-pagamento" class="chiudi-bottoni-pagamenti">Chiudi</button>
+        </div>
+        <div id="metodi-pagamento">
+          <!-- Pagina Contanti -->
+          <div id="pagina-contanti" class="pagine-pagamenti">
+            <div style="margin-top: 25px;">
+              PAGAMENTO CONTANTI
+              
+            </div><br>
+            <!--<div style="margin: 50px 0px 50px 0px; font-weight: 300;">Apertura cassetto ...</div>
+            <button id="chiudi-contanti" class="chiudi-bottoni-pagamenti">Chiudi</button>-->
+            <span style="font-weight: 400; font-size: smaller;">Selezionare l'importo versato</span>
+            <table>
+              <tr>
+                <td><button id="5euro" class="banconote"><img src="https://i.postimg.cc/vHvDgcck/5euro.webp" alt="" width="50px" onclick="resto('5')"></button></td>
+                <td><button id="10euro" class="banconote"><img src="https://i.postimg.cc/qvz0JRn8/10euro.jpg" alt="" width="50px" onclick="resto('10')"></button></td>
+                <td><button id="20euro" class="banconote"><img src="https://i.postimg.cc/Gh3dfzmg/20euro.jpg" alt="" width="50px" onclick="resto('20')"></button></td>
+                <td><button id="50euro" class="banconote"><img src="https://i.postimg.cc/3xVhdTCz/50euro.png" alt="" width="50px" onclick="resto('50')"></button></td>
+                <td><button id="100euro" class="banconote"><img src="https://i.postimg.cc/ftLPkyRH/100euro.png" alt="" width="50px" onclick="resto('100')"></button></td>
+              </tr>
+            </table>
+            <div id="calculator-resto">
+                <table class="resto" >
+                  <tr>
+                    <td colspan="4"> <input class="display-box-resto" type="text" id="result-resto" disabled /> </td>
+                  </tr>
+                  <tr>
+                    <!-- display() function displays the value of clicked button -->
+                    <td> <input type="button" value="1" onclick="displayresto('1')" /> </td>
+                    <td> <input type="button" value="2" onclick="displayresto('2')" /> </td>
+                    <td> <input type="button" value="3" onclick="displayresto('3')" /> </td>
+                    <td> <input type="button" value="X" onclick="displayresto('*')" /> </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="button" value="4" onclick="displayresto('4')" /> </td>
+                    <td> <input type="button" value="5" onclick="displayresto('5')" /> </td>
+                    <td> <input type="button" value="6" onclick="displayresto('6')" /> </td>
+                    <td> <input type="button" value="C" onclick="cleardisplayresto()" id="btn-canc" /> </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="button" value="7" onclick="displayresto('7')" /> </td>
+                    <td> <input type="button" value="8" onclick="displayresto('8')" /> </td>
+                    <td> <input type="button" value="9" onclick="displayresto('9')" /> </td>
+                  </tr>
+                  <tr>
+                    <td> <input type="button" value="." onclick="displayresto('.')" /> </td>
+                    <td> <input type="button" value="0" onclick="displayresto('0')" /> </td>
+                    <td> <input type="button" value="00" onclick="displayresto('00')" /> </td>
+                  </tr>
+              </table>
+              
+            </div>
+            <br>
+            <button id="calcola-resto" onclick="calcolaresto()">Calcola Resto</button>
+          </div>
+          <div id="pagina-resto-contanti" class="pagine-pagamenti">
+            <div style="margin: 50px 0px 50px 0px; font-weight: 300;">Apertura cassetto ...</div>
+            <br>
+            <span style="font-size: smaller;">Totale: <span id="totale-resto"></span></span><br>
+            <span style="font-size: smaller;">Importo Versato: <span id="importo-versato-resto"></span></span><br>
+            <span style="font-size: smaller;">Resto: <span id="resto-resto"></span></span><br><br><br>
+            <br>
+            <button id="chiudi-contanti" class="chiudi-bottoni-pagamenti">Chiudi</button>
+          </div>
+          <!-- Pagina Carta -->
+          <div id="pagina-carta" class="pagine-pagamenti">
+            <div style="margin-top: 25px;">
+              PAGAMENTO CON CARTA
+            </div>
+            <div style="margin: 50px 0px 50px 0px; font-weight: 300;">Inserire la carta nel lettore e digitare il pin.</div>
+            <button id="chiudi-carta" class="chiudi-bottoni-pagamenti">Chiudi</button>
+          </div>
+
+          <!-- Pagina Buoni -->
+          <div id="pagina-buoni" class="pagine-pagamenti">
+            <div style="margin-top: 25px;">
+              PAGAMENTO CON BUONI
+            </div>
+            <div style="margin: 50px 0px 50px 0px; font-weight: 300;">Scansiona il codice a barre del buono sconto.</div>
+            <button id="chiudi-buoni" class="chiudi-bottoni-pagamenti">Chiudi</button>
+          </div>
+
+          <!-- Pagina Crypto -->
+          <div id="pagina-crypto" class="pagine-pagamenti">
+            <div style="margin-top: 25px;">
+              PAGAMENTO CON CRYPTO
+            </div>
+            <div style="margin: 50px 0px 50px 0px; font-weight: 300;">Trasferisci l'importo in crypto al seguente indirizzo.</div>
+            <img src="https://chart.googleapis.com/chart?cht=qr&chl=Il%20pagamento%20%C3%A8%20stato%20effettuato!&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code"><a href="it.qr-code-generator.com/" border="0" style="cursor:default" rel="nofollow"></a>
+            <br>
+            <button id="chiudi-crypto" class="chiudi-bottoni-pagamenti">Chiudi</button>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+ 
+</body>
+ 
+</html>
