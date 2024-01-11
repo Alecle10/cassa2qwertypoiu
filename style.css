@@ -167,7 +167,7 @@ div#titolo-scontrino {
 
 #corpo-scontrino {
     padding: 0px 25px;
-    height: 60%;
+    height: 50%;
     overflow-y: auto;
     display: flex;
     justify-content: space-between;
