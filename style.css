@@ -302,13 +302,13 @@ div#prodotti-categorie {
     color: black;
     border: #000 solid 1px;
     width: 183px;
-    height: 77px;
+    height: 75px;
     outline: none;
 }
 
 #btn-pagamento {
     width: 370px;
-    height: 87px;
+    height: 80px;
 }
 
 .btns-cassa:active {
