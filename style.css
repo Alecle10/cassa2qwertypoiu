@@ -302,13 +302,13 @@ div#prodotti-categorie {
     color: black;
     border: #000 solid 1px;
     width: 183px;
-    height: 90px;
+    height: 70px;
     outline: none;
 }
 
 #btn-pagamento {
     width: 370px;
-    height: 95px;
+    height: 80px;
 }
 
 .btns-cassa:active {
@@ -332,7 +332,7 @@ div#prodotti-categorie {
     border: solid black 0.5px;
     color: black;
     width: 98%;
-    height: 65%;
+    height: 50%;
 }
 
 #btn-canc {
